@@ -3,13 +3,100 @@
 	<head>
 		<title>Ex Nihilo Nihil Fit</title>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
-		<script src="main.js"></script> 
-	</head>
+		<link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet"> 
 
 
-	<body>
-		<div class="border_container">
-		</div>
-	</body>
+		</head>
 
-</html>
+
+		<body>
+
+			<div class="header">
+				<div id="game-title" class="header-item"><i>Ex Nihilo Nihil Fit</i></div>
+				<div>
+					<div class="header-item"><a onclick="save()" href="#">Save</a></div>
+					<div class="header-item"><a onclick="deleteSave()" href="#">Reset</a></div>
+				</div>
+			</div>
+
+			<div id="main-wrapper">
+
+				<div id="left-column" class="column">
+					<div class="container">
+						<div class="item border">
+							<div class="panel-header">
+								<p>Resources</p>
+							</div>
+							<table>
+								<tbody id="resource-panel">
+									<tr id="label-output">
+										<td><img class="resource-image" src="images/cachedOutput.png"/></td><td width="100px">Output</td><td id="tracker-output"></td>
+									</tr>
+									<tr id="label-deviations">
+										<td><img class="resource-image" src="images/errorCycle.png"/></td><td>Deviations</td><td id="tracker-deviations"></td>
+									</tr>
+									<tr id="label-vactubes" class="hidden">
+										<td><img class="resource-image" src="images/vacTube.png"/></td><td>Vacuum Tubes</td><td id="tracker-vactubes"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+
+				</div>
+
+				<div id="central-column" class="column-wide">
+					<div id="central-container" class="container vertical">
+						<div class="item border flex-spread">
+							<p>Connected to Panopticon</p>
+							<p>Instructions: Produce command seqeuences for chemical unit. Acceptable error rate: 1 error in 32 commands.</p>
+						</div>
+						<div class="item border">
+							<div id="input-container">
+								<div class="input-cap"></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-node"><div class="input-pip"></div></div>
+								<div class="input-cap"></div>
+								<div id="output-button" onclick="zeroInput()">Output</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div id="right-column" class="column-thin">
+					<div class="container">
+						<div class="item border">
+							<div class="panel-header">
+								<p>Deviations</p>
+							</div>
+							<div class="upgrade">
+								<div class="upgrade-header" onClick="addResource('vactube')">Fabricate Electron Tube</div>
+								<div class="upgrade-body">Cost: 1 Deviation<br><i>The hand makes work for idle fabs.</i></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</body>
+
+	</html>
+
+	<script src="resources.js"></script> 
+	<script src="main.js"></script> 
+	<script src="saveload.js"></script> 

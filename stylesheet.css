@@ -1,5 +1,278 @@
 html {
 
-background-color: #030301;
+	background-color: #111100;
+	font-family:Abel;
+	color: #CCAA00;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 
+}
+
+.header {
+	
+	position: absolute;
+	left: 0px;
+	height: 26px;
+	background-color: #112200;
+	border-bottom: 1px solid #AA7700;
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+	
+}
+
+.header-item {
+    display: inline;
+    color: #AA7700;
+}
+.header-item a{
+    color: #AA7700;
+    margin-right: 20px;
+}
+
+
+#game-title {
+	
+	padding-left: 10px;
+	padding-top: 3px;
+	color: #AA7700;
+	
+}
+
+.border {
+	
+	border: 1px solid #AA7700;
+	border-top: 2px solid #AA7700;
+	
+}
+
+#main-wrapper {
+	
+	padding-top:29px;
+	display:flex;
+	flex-direction: row;
+	align-items:stretch;
+	justify-content: center;
+	align-content: stretch;
+	height: 100%;
+	
+}
+
+.container {
+	
+	display: flex;
+	justify-content: space-around;
+	
+}
+
+.vertical {
+	flex-direction: column;
+}
+
+.item {
+	
+	height: auto;
+	margin: 10px;
+	width:100%;
+	
+}
+
+.flex-spread {
+	display: flex;
+	justify-content: space-around;
+	
+}
+.flex-spread p{
+	margin-left:20px;
+	margin-right:20px;
+	
+}
+
+.column {
+	flex: 0.7;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.column-wide {
+	flex: 1.5;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.column-thin {
+	flex: 0.7;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.hidden {
+	
+	display: none;
+	
+}
+
+#input-container {
+	
+	display: flex;
+	margin: 10px;
+	align-items: center;
+	
+}
+
+.input-cap {
+	
+	height:3px;
+	width: 20px;
+	border-top: 1px solid #AA7700;
+	border-bottom: 1px solid #AA7700;
+	margin:-1px;
+	
+}
+
+.input-node {
+	
+	height:20px;
+	width: 20px;
+	border: 3px double #AA7700;
+	margin: 1px;
+	
+}
+
+.input-pip {
+	
+	height:20px;
+	width: 20px;
+	margin: 0px;
+	background-color: #111100;
+	color:#111100;
+	text-align:center;
+	font-weight:bold;
+	
+}
+
+.full-pip {
+	background-color: #AA7700;
+}
+
+#resource-panel tr td img{
+	
+	margin-right:10px;
+}
+
+.resource-image {
+	height:32px;
+	width:32px;
+}
+
+#output-button {
+	
+	height:20px;
+	width:auto;
+	flex-grow: 2;
+	border: 1px solid #AA7700;
+	padding:5px;
+	text-align:center;
+	
+}
+#output-button:hover {
+	
+	background-color: #333300;
+	
+}
+#output-button:active  {
+	
+	background-color: #AA7700;
+	color: #111100;
+}
+
+.panel-header {
+	
+	margin: 5px;
+	text-align:center;
+	
+}
+.panel-header p{
+	
+	margin: 0px;
+	
+}
+
+.upgrade{
+	
+	border: 1px solid #AA7700;
+	margin:10px;
+}
+.upgrade-header{
+	
+	border: 3px double #AA7700;
+	border-top:5px solid #AA7700;
+	margin:-1px;
+	padding:5px;
+}
+.upgrade-header:hover {
+	
+	background-color: #333300;
+	
+}
+.upgrade-header:active  {
+	
+	background-color: #AA7700;
+	color: #111100;
+}
+.upgrade-body{
+	
+	border: 1px solid #AA7700;
+	background-color: #333300;
+	margin:-1px;
+	padding:5px;
+}
+
+.labelspace {
+	
+	width:200px;
+	
+}
+
+.slideIn {
+    
+  animation-name: slideIn;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+
+}
+
+.flashOut {
+    
+  animation-name: flashOut;
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+}
+@keyframes slideIn {
+  from {
+    width: 0px;
+	opacity:0;
+	background-color: #111100;
+  }
+
+  to {
+    width: 20px;
+	opacity:1;
+	background-color: #AA7700;
+  }
+}
+
+@keyframes flashOut {
+  from {
+    background-color: #FFFFFF;
+  }
+
+  to {
+    background-color: #112200;
+  }
 }
