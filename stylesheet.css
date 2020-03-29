@@ -18,7 +18,7 @@ html {
 	position: absolute;
 	left: 0px;
 	height: 26px;
-	background-color: #112200;
+	background-color: #221100;
 	border-bottom: 1px solid #AA7700;
 	width: 100%;
     display: flex;
@@ -53,7 +53,8 @@ html {
 
 #main-wrapper {
 	
-	padding-top:29px;
+	background-color: #111100;
+	padding-top:44px;
 	display:flex;
 	flex-direction: row;
 	align-items:stretch;
@@ -67,6 +68,7 @@ html {
 	
 	display: flex;
 	justify-content: space-around;
+	background-color: #221100;
 	
 }
 
@@ -77,7 +79,6 @@ html {
 .item {
 	
 	height: auto;
-	margin: 10px;
 	width:100%;
 	
 }
@@ -210,7 +211,7 @@ html {
 }
 .upgrade-header{
 	
-	border: 3px double #AA7700;
+	border: 1px solid #AA7700;
 	border-top:5px solid #AA7700;
 	margin:-1px;
 	padding:5px;
@@ -227,7 +228,7 @@ html {
 }
 .upgrade-body{
 	
-	border: 1px solid #AA7700;
+	border: 3px double #AA7700;
 	background-color: #333300;
 	margin:-1px;
 	padding:5px;
