@@ -60,15 +60,28 @@ html {
 	align-items:stretch;
 	justify-content: center;
 	align-content: stretch;
-	height: 100%;
+	height: auto;
 	
 }
 
 .container {
 	
 	display: flex;
+	align-items:stretch;
 	justify-content: space-around;
 	background-color: #221100;
+	margin-bottom:20px;
+	max-height: 10000px;
+	
+}
+.container-side {
+	
+	display: flex;
+	align-items:stretch;
+	justify-content: space-around;
+	background-color: #221100;
+	margin-bottom:20px;
+	max-height: 10000px;
 	
 }
 
@@ -78,10 +91,25 @@ html {
 
 .item {
 	
-	height: auto;
+	flex:1;
 	width:100%;
 	
 }
+
+.scrollbox {
+	
+	border-top: 1px solid #AA7700;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-color: #AA7700 #221100;
+	scrollbar-width: thin;
+	
+}
+
+.scrollbox::-webkit-scrollbar {
+    width: 6px;
+    background-color: #221100;
+} 
 
 .flex-spread {
 	display: flex;
@@ -98,23 +126,38 @@ html {
 	flex: 0.7;
 	margin-left:10px;
 	margin-right:10px;
+	display: flex;
+	flex-direction:column;
+	align-items:stretch;
+	align-content:stretch;
+	height:100%;
+	
 }
 
 .column-wide {
 	flex: 1.5;
 	margin-left:10px;
 	margin-right:10px;
+	display: flex;
+	align-items:stretch;
+	flex-direction:column;
+	height:100%;
 }
 
 .column-thin {
 	flex: 0.7;
 	margin-left:10px;
 	margin-right:10px;
+	display: flex;
+	align-items:stretch;
+	flex-direction:column;
+	height:100%;
+	
 }
 
 .hidden {
 	
-	display: none;
+	display:none;
 	
 }
 
@@ -169,6 +212,10 @@ html {
 .resource-image {
 	height:32px;
 	width:32px;
+}
+.resource-image-small {
+	height:20px;
+	width:20px;
 }
 
 #output-button {
@@ -228,10 +275,20 @@ html {
 }
 .upgrade-body{
 	
-	border: 3px double #AA7700;
-	background-color: #333300;
+	border: 1px solid #AA7700;
+	background-color: #111100;
 	margin:-1px;
 	padding:5px;
+	padding-right:10px;
+}
+
+.upgrade-display {
+	
+   display: flex;
+   align-items:center;
+   margin-bottom: -15px;
+
+	
 }
 
 .labelspace {
@@ -276,4 +333,66 @@ html {
   to {
     background-color: #112200;
   }
+}
+
+@keyframes autoExpandHeight {
+  from {
+    height: 0;
+  }
+  to {
+    height: auto; /* your line height here */
+  }
+}
+
+/* Tooltip container */
+.tooltip {
+	position:relative;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  display:none;
+  visibility: hidden;
+  width: 300px;
+  background-color: #333300;
+  color: #fff;
+  text-align: center;
+  padding: 2px 20px;
+  border:1px solid #AA7700;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 63px;
+  margin-left: -60px;
+  
+  opacity: 0;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 10px;
+  margin-left: -0px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #AA7700 transparent transparent transparent;
+  
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  display: inherit;
+  opacity: 1;
+  transition-delay:0s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip .tooltiptext:hover {
+  visibility: hidden;
+  opacity: 0;
+  transition-delay:0s;
 }

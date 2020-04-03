@@ -3,6 +3,7 @@
 var resourceMapping = {
 	output : {
         name : "Output",
+		icon: "cachedOutput",
         amount: 0,
         baseCost: 0,
         clickValue: 1,
@@ -13,6 +14,7 @@ var resourceMapping = {
     },
 	deviations : {
         name : "Deviations",
+		icon: "errorCycle",
         baseCost : 100,
         amount: 0,
         clickValue: 1,
@@ -23,14 +25,25 @@ var resourceMapping = {
     },
 	vactube : {
         name : "Vactubes",
-        baseCost : 1,
+		icon: "vacTube",
         amount: 0,
-		costResource:"deviations",
+		costList : {"deviations":1},
         clickValue: 1,
         fps: 0,
         mult: 1,
         idle: 0,
-        limit: 10
+        limit: 100
+    },
+	boule : {
+        name : "Boules",
+		icon: "siliconBoule",
+        amount: 0,
+		costList : {"deviations":10},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
     }
 };
 

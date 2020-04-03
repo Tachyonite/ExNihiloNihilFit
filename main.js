@@ -9,6 +9,10 @@ var mainLoopInterval = setInterval( mainLoop, 100);
 
 function mainLoop(){
 	
+	progressWatcher();
+	stageWatcher();
+	productWatcher();
+	
 	for (resource in resourceMapping){
 		var path = "tracker-"+resourceMapping[resource].name.toLowerCase();
 		var labelPath = "label-"+resourceMapping[resource].name.toLowerCase();
@@ -23,14 +27,62 @@ function mainLoop(){
 			ele.innerHTML = 0;
 		}
 	}
+	
+	searchAchieves();
+	
 }
 
 function progressWatcher(){
 	
-	if (resources["deviations"]>=1 && progress["deviations"]==0){
-		progress["deviations"] = 1
+	if (resourceMapping.deviations.amount > 0){
+		gameStages.upgradeFabricator.unlocked = true;
+	}
+	if (resourceMapping.vactube.amount > 3){
+		gameStages.upgradeZoneMelter.unlocked = true;
+	}
+}
+
+function productWatcher(){
+	
+	for (connex in unlockables){
+		if (unlockables[connex].req == undefined){continue;}
+		if (unlockables[connex].req && gameStages[unlockables[connex].req].bought){
+			if (!document.getElementById("deviation-"+connex)){
+				renderDeviation(connex);
+			}
+		}
+	}
+}
+
+function stageWatcher(){
+	
+	if (gameStages.upgradeFabricator.unlocked == true){
+		document.getElementById("connexions-window").classList.remove("hidden");
+	}
+	if (gameStages.upgradeFabricator.unlocked == true && gameStages.upgradeFabricator.bought == false && !document.getElementById("access-fabricator")){
+		renderConnexion(unlockables.fabricator);
+	}
+	if (gameStages.upgradeZoneMelter.unlocked == true && gameStages.upgradeZoneMelter.bought == false && !document.getElementById("access-zoneMelter")){
+		renderConnexion(unlockables.zoneMelter);
+	}
+	if (gameStages.upgradeFabricator.bought == true){
+		if (document.getElementById("access-fabricator")){
+		document.getElementById("access-fabricator").remove();
+		}
+		document.getElementById("deviations-window").classList.remove("hidden");
+		
+	}
+	if (gameStages.upgradeZoneMelter.bought == true){
+		if (document.getElementById("access-zoneMelter")){
+		document.getElementById("access-zoneMelter").remove();
+		}
 	}
 	
+}
+
+function connect(connexion,requirementSatisfy){
+	console.log(requirementSatisfy);
+	gameStages[requirementSatisfy].bought = true;
 }
 
 function increaseInput(){
@@ -52,7 +104,7 @@ function increaseInput(){
 function zeroInput(){
 	if (input>=1){
 	resourceMapping["output"].amount+=input;
-	resourceMapping["deviations"].amount+=input/32
+	resourceMapping["deviations"].amount+=input/4
 	}
 	var inputNodes = document.getElementsByClassName("input-pip");
 	
@@ -61,7 +113,8 @@ function zeroInput(){
 		if (i<=input){
 			inputNodes[i].classList.remove("full-pip");	
 			inputNodes[i].classList.add("flashOut");
-			inputNodes[i].style.webkitAnimationName = 'flashOut';	
+			inputNodes[i].style.webkitAnimationName = 'flashOut';
+			
 		}
 	}
 	input = -1;
@@ -83,33 +136,38 @@ function drawInput(){
 }
 
 function addResource(resource,amount=1,fixed=true){
-    console.log(resourceMapping[resource]);
     if (fixed){
-        if (figureFixedCost(resourceMapping[resource].baseCost,resourceMapping[resource],resourceMapping[resource].costResource,amount)){
+        if (figureFixedCost(resourceMapping[resource])){
             if (resourceMapping[resource].limit > resourceMapping[resource].amount){
-                
-                resourceMapping[resourceMapping[resource].costResource].amount -= resourceMapping[resource].baseCost;
+                for (costRes in resourceMapping[resource].costList){
+					resourceMapping[costRes].amount -= resourceMapping[resource].costList[costRes];
+				}
                 resourceMapping[resource].amount += amount;
                 
             }
         
         }  
     }    
-    
 }
 
-function figureFixedCost(cost,resource,req,amount=1){
-    
-    var totalCost = cost * amount
-    if (resourceMapping[resource.costResource].amount >= resource.baseCost){
-        return true;
-    }
-    return false;
-    
+function figureFixedCost(resource,amount=1){
+    var outCheck = [];
+	for (costRes in resource.costList){	
+		if (resourceMapping[costRes].amount >= resource.costList[costRes]){
+			outCheck.push(true);
+		}
+		else{outCheck.push(false)}
+	}
+	if (outCheck.every(fixedCostTrue)){
+		return true;
+		}
+	else{
+		return false;
+		}
 }
 
-for (r in resourceMapping){	
-        colourLabels(resourceMapping[r]);	
-    }
+function fixedCostTrue(cost){
+	return cost == true;
+}
 	
 	
