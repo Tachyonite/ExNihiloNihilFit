@@ -1,6 +1,7 @@
 function renderConnexion(connexion){
 
 	var connexionPanel = document.getElementById("connexion-panel"); 
+	
 	var upgrade = document.createElement("div");
 	var upgradeHeader = document.createElement("div");
 	var upgradeBody = document.createElement("div");
@@ -16,10 +17,41 @@ function renderConnexion(connexion){
 	
 	var outCost = "";
 	for (cost in connexion.costList){
-		outCost += "<span class='upgrade-display' id=cost-"+connexion.name+">"+"<img class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+connexion.costList[cost]+"</span>"	
+		outCost += "<img style='margin-left:5px;' class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+connexion.costList[cost]
 	}
 	
-	upgradeBody.innerHTML = outCost+"<br><i>"+connexion.desc+"</i>";
+	upgradeBody.innerHTML = "<span class='upgrade-display' id=cost-"+connexion.name+">"+outCost+"</span><br><i>"+connexion.desc+"</i>";
+	
+	upgrade.appendChild(upgradeHeader);
+	upgrade.appendChild(upgradeBody);
+	
+	connexionPanel.appendChild(upgrade);
+	console.log(connexionPanel);
+
+}
+
+function renderProject(project){
+
+	var connexionPanel = document.getElementById("projects-panel"); 
+	var upgrade = document.createElement("div");
+	var upgradeHeader = document.createElement("div");
+	var upgradeBody = document.createElement("div");
+
+	upgradeHeader.classList.add("upgrade-header");
+	upgradeBody.classList.add("upgrade-body");
+
+	upgrade.classList.add("upgrade");
+	upgrade.id = "access-"+project.name;
+	
+	upgradeHeader.onclick = function(){connect(project,project.link);};
+	upgradeHeader.innerText = project.label;
+	
+	var outCost = "";
+	for (cost in project.costList){
+		outCost += "<img style='margin-left:5px;' class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+project.costList[cost]
+	}
+	
+	upgradeBody.innerHTML = "<span class='upgrade-display' id=cost-"+project.name+">"+outCost+"</span><br><i>"+project.desc+"</i>";
 	
 	upgrade.appendChild(upgradeHeader);
 	upgrade.appendChild(upgradeBody);
@@ -31,7 +63,7 @@ function renderConnexion(connexion){
 function renderDeviation(deviation){
 
 	deviation = unlockables[deviation];
-	dResource = resourceMapping[deviation.name]
+	dResource = resourceMapping[deviation.name];
 
 	var deviationPanel = document.getElementById("deviation-panel"); 
 	var upgrade = document.createElement("div");
@@ -50,13 +82,14 @@ function renderDeviation(deviation){
 	
 	var outCost = "";
 	for (cost in dResource.costList){
-		outCost += "<span class='upgrade-display' id=cost-"+deviation.name+">"+"<img class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+dResource.costList[cost]+"</span>"	
+		outCost += "<img class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+"<span style='margin-right:5px;'>"+dResource.costList[cost]+"</span>"
 	}
 	
-	upgradeBody.innerHTML = outCost+"<br><i>"+deviation.desc+"</i>";
-
+	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+deviation.label+"</div><div class='upgrade-display' id=cost-"+deviation.name+">"+outCost+"</div>";
+	upgradeBody.innerHTML = "<i>"+deviation.desc+"</i>"
 	upgrade.appendChild(upgradeHeader);
 	upgrade.appendChild(upgradeBody);
+	
 	
 	deviationPanel.appendChild(upgrade);
 

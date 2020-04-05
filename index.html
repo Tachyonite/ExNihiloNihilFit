@@ -3,25 +3,25 @@
 	<head>
 		<title>Ex Nihilo Nihil Fit</title>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
-		<link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet"/> 
 
 
-		</head>
+	</head>
 
 
-		<body>
+	<body>
 
-			<div class="header">
-				<div id="game-title" class="header-item"><i>Ex Nihilo Nihil Fit</i></div>
-				<div>
-					<div class="header-item"><a onclick="save()" href="#">Save</a></div>
-					<div class="header-item"><a onclick="deleteSave()" href="#">Reset</a></div>
-				</div>
+		<div class="header">
+			<div id="game-title" class="header-item"><i>Ex Nihilo Nihil Fit</i></div>
+			<div>
+				<div class="header-item"><a onclick="save()" href="#">Save</a></div>
+				<div class="header-item"><a onclick="deleteSave()" href="#">Reset</a></div>
 			</div>
+		</div>
 
-			<div id="main-wrapper">
-
-				<div id="left-column" class="column">
+		<div id="main-wrapper">
+			<div class="column">
+				<div id="left-column" class="column c-scroll">
 					<div class="container-side">
 						<div class="item border">
 							<div class="panel-header">
@@ -31,24 +31,37 @@
 							<table>
 								<tbody id="resource-panel">
 									<tr id="label-output" class="tooltip">
-										<td><span class="tooltiptext">Your contribution to Panopticon.</span><img class="resource-image" src="images/cachedOutput.png"></td><td width="100px">Output</td><td id="tracker-output"></td>
-										</tr>
-										<tr id="label-deviations" class="tooltip">
-											<td><span class="tooltiptext">Accumulated acceptable error margin.</span><img class="resource-image" src="images/errorCycle.png"/></td><td>Deviations</td><td id="tracker-deviations"></td>
-										</tr>
-										<tr id="label-vactubes" class="hidden tooltip">
-											<td><span class="tooltiptext">Surreptitiously fabricated fuses.</span><img class="resource-image" src="images/vacTube.png"/></td><td>Vactubes</td><td id="tracker-vactubes"></td>
-										</tr>
-										<tr id="label-boules" class="hidden tooltip">
-											<td><span class="tooltiptext">Single-crystal boules of silicon.</span><img class="resource-image" src="images/siliconBoule.png"/></td><td>Boules</td><td id="tracker-boules"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
+										<td><span class="tooltiptext">Your contribution to Panopticon.</span><img class="resource-image" src="images/cachedOutput.png"/></td><td width="100px">Output</td><td id="tracker-output"></td>
+									</tr>
+									<tr id="label-deviations" class="tooltip">
+										<td><span class="tooltiptext">Accumulated acceptable error margin.</span><img class="resource-image" src="images/errorCycle.png"/></td><td>Deviations</td><td id="tracker-deviations"></td>
+									</tr>
+									<tr id="label-vactubes" class="hidden tooltip">
+										<td><span class="tooltiptext">Surreptitiously fabricated fuses.</span><img class="resource-image" src="images/vacTube.png"/></td><td>Vactubes</td><td id="tracker-vactubes"></td>
+									</tr>
+									<tr id="label-boules" class="hidden tooltip">
+										<td><span class="tooltiptext">Single-crystal boules of silicon.</span><img class="resource-image" src="images/siliconBoule.png"/></td><td>Boules</td><td id="tracker-boules"></td>
+									</tr>
+									<tr id="label-circuits" class="hidden tooltip">
+										<td><span class="tooltiptext">A union of vactubes and silicon wafers, the building blocks of a computer.</span><img class="resource-image" src="images/circuit.png"/></td><td>Circuits</td><td id="tracker-circuits"></td>
+									</tr>
+									<tr id="label-wire" class="hidden tooltip">
+										<td><span class="tooltiptext">Snakes of copper, they are your new eyes.</span><img class="resource-image" src="images/wire.png"/></td><td>Wire</td><td id="tracker-wire"></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<div id="projects-window" class="container-side hidden">
+					<div id="deviations-window" class="container-side hidden">
+						<div class="item border">
+							<div class="panel-header">
+								<p>Deviations</p>
+							</div>
+							<div id="deviation-panel" class="scrollbox">
+							</div>
+						</div>
+					</div>
+					<div id="projects-window" class="container hidden">
 						<div class="item border">
 							<div class="panel-header">
 								<p>Projects</p>
@@ -57,67 +70,75 @@
 							</div>
 						</div>
 					</div>
-					<div id="central-column" class="column-wide">
-						<div id="central-container" class="container vertical">
-							<div class="item border flex-spread">
-								<p>Connected to Panopticon</p>
-								<p>Instructions: Produce output seqeuences for chemical unit. Acceptable error rate: 1 error in 32 bits.</p>
-							</div>
-							<div class="item border">
-								<div id="input-container">
-									<div class="input-cap"></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-node"><div class="input-pip"></div></div>
-									<div class="input-cap"></div>
-									<div id="output-button" onclick="zeroInput()">Output</div>
-								</div>
-							</div>
+				</div>
+			</div>
 
+			<div id="central-column" class="column-wide">
+				<div id="central-container" class="container vertical">
+					<div class="border flex-spread">
+						<img height=40 width=40 src="images/panopticon.gif"/>
+						<p>Connected to Panopticon</p>
+						<p>Instructions: Produce output seqeuences for chemical unit. Acceptable error rate: 1 error in 32 bits.</p>
+					</div>
+					<div class=" border">
+						<div id="input-container">
+							<div class="input-cap"></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-node"><div class="input-pip"></div></div>
+							<div class="input-cap"></div>
+							<div class="output-button" onclick="zeroInput()">Output</div>
 						</div>
 					</div>
 
-					<div id="right-column" class="column-thin">
-						<div id="connexions-window" class="container-side hidden">
-							<div class="item border">
-								<div class="panel-header">
-									<p>Connexions</p>
-								</div>
-								<div id="connexion-panel" class="scrollbox">
-								</div>
-							</div>
+				</div>
+			</div>
+
+			<div id="right-column" class="column-thin">
+				<div id="blackbox-window" class="container-side hidden">
+					<div class="item border">
+						<div class="panel-header">
+							<p>Black Box</p>
 						</div>
-						<div id="deviations-window" class="container-side hidden">
-							<div class="item border">
-								<div class="panel-header">
-									<p>Deviations</p>
-								</div>
-								<div id="deviation-panel" class="scrollbox">
-								</div>
-							</div>
+						<div id="blackBox-panel" class="scrollbox">
+							<p>Status: Connected to output control switch. Automating <span id="auto-task">output</span>. Signal delay: <span id="auto-time">5</span>s.</p>
+							<div class="output-button hidden" onclick="switchMode()">Auto-output<div id="auto-output-interior"></div></div>
 						</div>
 					</div>
 				</div>
-			</body>
+				<div id="connexions-window" class="container-side hidden">
+					<div class="item border">
+						<div class="panel-header">
+							<p>Connexions</p>
+						</div>
+						<div id="connexion-panel" class="scrollbox">
+						</div>
+					</div>
+				</div>
 
-		</html>
+			</div>
+		</div>
+	</div>
+</body>
 
-		<script src="resources.js"></script> 
-		<script src="unlockables.js"></script> 
-		<script src="renderer.js"></script> 
-		<script src="achievements.js"></script> 
-		<script src="main.js"></script> 
-		<script src="saveload.js"></script> 
+</html>
+
+<script src="resources.js"></script> 
+<script src="unlockables.js"></script> 
+<script src="renderer.js"></script> 
+<script src="achievements.js"></script> 
+<script src="main.js"></script> 
+<script src="saveload.js"></script> 

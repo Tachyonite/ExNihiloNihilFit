@@ -14,7 +14,9 @@ function addProduct(resource){
 var achievements = {
 
 	vactubeUnlocked : {unlocked: false, trigger: resourceMapping.vactube, amount: 1, effects:["unhideMetric"], effector:'vactube'},
-    bouleUnlocked : {unlocked: false, trigger: resourceMapping.boule, amount: 1, effects:["unhideMetric"], effector:'boule'}
+    bouleUnlocked : {unlocked: false, trigger: resourceMapping.boule, amount: 1, effects:["unhideMetric"], effector:'boule'},
+    circuitUnlocked : {unlocked: false, trigger: resourceMapping.circuit, amount: 1, effects:["unhideMetric"], effector:'circuit'},
+    wireUnlocked : {unlocked: false, trigger: resourceMapping.wire, amount: 1, effects:["unhideMetric"], effector:'wire'}
 
 }
 
@@ -22,7 +24,12 @@ var gameStages = {
 	
 	upgradeFabricator : {unlocked: false, bought: false},
 	upgradeZoneMelter : {unlocked: false, bought: false},
-	upgradeCircuitMill : {unlocked: false, bought: false}
+	upgradeCircuitMill : {unlocked: false, bought: false},
+	upgradeWireMill : {unlocked: false, bought: false},
+
+
+	projectBlackBox	: {unlocked: false, bought: false},
+	projectFabBox	: {unlocked: false, bought: false}
 	
 }
 

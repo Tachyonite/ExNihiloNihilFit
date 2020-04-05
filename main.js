@@ -4,27 +4,27 @@ var progress = {"errorTolerance":0}
 
 var inputInterval = setInterval( drawInput, 100);
 var tickInputInterval = setInterval( increaseInput, 200);
-
 var mainLoopInterval = setInterval( mainLoop, 100);
+
+var autoTick = 0
+var autoModes = ["output"]
+var mode = autoModes[0]
 
 function mainLoop(){
 	
 	progressWatcher();
 	stageWatcher();
 	productWatcher();
+	projectTicker();
 	
 	for (resource in resourceMapping){
 		var path = "tracker-"+resourceMapping[resource].name.toLowerCase();
 		var labelPath = "label-"+resourceMapping[resource].name.toLowerCase();
 		var ele = document.getElementById(path);
 		var labelEle = document.getElementById(labelPath);
-		if (resourceMapping[resource].amount > 0){
+		if (resourceMapping[resource].amount > 0 || !labelEle.classList.contains('hidden')){
 			labelEle.classList.remove('hidden');
 			ele.innerHTML = Math.floor(resourceMapping[resource].amount);
-		}else{
-			if (resource != "output" && resource != "deviations")
-			labelEle.classList.add('hidden');
-			ele.innerHTML = 0;
 		}
 	}
 	
@@ -39,6 +39,15 @@ function progressWatcher(){
 	}
 	if (resourceMapping.vactube.amount > 3){
 		gameStages.upgradeZoneMelter.unlocked = true;
+	}
+	if (resourceMapping.boule.amount > 1){
+		gameStages.upgradeCircuitMill.unlocked = true;
+	}
+	if (resourceMapping.circuit.amount > 1){
+		gameStages.projectBlackBox.unlocked = true;
+	}
+	if (gameStages.projectBlackBox.bought == true){
+		gameStages.upgradeWireMill.unlocked = true;
 	}
 }
 
@@ -58,6 +67,7 @@ function stageWatcher(){
 	
 	if (gameStages.upgradeFabricator.unlocked == true){
 		document.getElementById("connexions-window").classList.remove("hidden");
+		document.getElementById("connexions-window").classList.add("flashOut");
 	}
 	if (gameStages.upgradeFabricator.unlocked == true && gameStages.upgradeFabricator.bought == false && !document.getElementById("access-fabricator")){
 		renderConnexion(unlockables.fabricator);
@@ -65,11 +75,21 @@ function stageWatcher(){
 	if (gameStages.upgradeZoneMelter.unlocked == true && gameStages.upgradeZoneMelter.bought == false && !document.getElementById("access-zoneMelter")){
 		renderConnexion(unlockables.zoneMelter);
 	}
+	if (gameStages.upgradeCircuitMill.unlocked == true && gameStages.upgradeCircuitMill.bought == false && !document.getElementById("access-circuitMill")){
+		renderConnexion(unlockables.circuitMill);
+	}
+	if (gameStages.upgradeWireMill.unlocked == true && gameStages.upgradeWireMill.bought == false && !document.getElementById("access-wireMill")){
+		renderConnexion(unlockables.wireMill);
+	}
+	if (gameStages.projectBlackBox.unlocked == true && gameStages.projectBlackBox.bought == false && !document.getElementById("access-blackBox")){
+		renderProject(unlockables.blackBox);
+	}
 	if (gameStages.upgradeFabricator.bought == true){
 		if (document.getElementById("access-fabricator")){
 		document.getElementById("access-fabricator").remove();
 		}
 		document.getElementById("deviations-window").classList.remove("hidden");
+		document.getElementById("deviations-window").classList.add("flashOut");
 		
 	}
 	if (gameStages.upgradeZoneMelter.bought == true){
@@ -77,12 +97,64 @@ function stageWatcher(){
 		document.getElementById("access-zoneMelter").remove();
 		}
 	}
+	if (gameStages.upgradeCircuitMill.bought == true){
+		if (document.getElementById("access-circuitMill")){
+		document.getElementById("access-circuitMill").remove();
+		}
+		document.getElementById("projects-window").classList.remove("hidden");
+		document.getElementById("projects-window").classList.add("flashOut");
+	}
+	if (gameStages.upgradeWireMill.bought == true){
+		if (document.getElementById("access-wireMill")){
+		document.getElementById("access-wireMill").remove();
+		}
+	}
+	if (gameStages.projectBlackBox.bought == true){
+		if (document.getElementById("access-blackBox")){
+		document.getElementById("access-blackBox").remove();
+		}
+		document.getElementById("blackbox-window").classList.remove("hidden");
+		document.getElementById("blackbox-window").classList.add("flashOut");
+	}
+	
+}
+
+function projectTicker(){
+	
+	if (gameStages.projectBlackBox.bought == true){
+		autoTick++
+		if (mode == "output" && input == maxInput && autoTick == 50) {
+			autoTick = 0;
+			zeroInput();
+		}
+		if (mode == "production" && autoTick == 50){
+			
+			var item = items[Math.floor(Math.random() * items.length)];
+
+		}
+	}
+}
+
+function switchMode(){
+	
+	if (autoModes.indexOf(mode) == autoModes.length-1){
+		mode = autoModes[0]
+	}else{
+		mode = autoModes[autoModes.indexOf(mode)]+1
+	}
+	document.getElementById("auto-task").innerText = mode;
 	
 }
 
 function connect(connexion,requirementSatisfy){
-	console.log(requirementSatisfy);
-	gameStages[requirementSatisfy].bought = true;
+	if (figureFixedCost(connexion)){
+		console.log(requirementSatisfy);
+		gameStages[requirementSatisfy].bought = true;
+		
+			for (costRes in connexion.costList){
+				resourceMapping[costRes].amount -= connexion.costList[costRes];
+			}                
+	}
 }
 
 function increaseInput(){

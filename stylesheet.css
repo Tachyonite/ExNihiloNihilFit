@@ -57,10 +57,9 @@ html {
 	padding-top:44px;
 	display:flex;
 	flex-direction: row;
-	align-items:stretch;
 	justify-content: center;
 	align-content: stretch;
-	height: auto;
+	height: 95%;
 	
 }
 
@@ -92,28 +91,31 @@ html {
 .item {
 	
 	flex:1;
-	width:100%;
+	width:100%;	
+	padding-left:8px;
 	
 }
 
 .scrollbox {
 	
-	border-top: 1px solid #AA7700;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	width:100%;
 	scrollbar-color: #AA7700 #221100;
 	scrollbar-width: thin;
+	padding-bottom:8px;
 	
 }
 
 .scrollbox::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
     background-color: #221100;
 } 
 
 .flex-spread {
 	display: flex;
 	justify-content: space-around;
+	align-items:center;
 	
 }
 .flex-spread p{
@@ -126,11 +128,8 @@ html {
 	flex: 0.7;
 	margin-left:10px;
 	margin-right:10px;
-	display: flex;
-	flex-direction:column;
-	align-items:stretch;
-	align-content:stretch;
-	height:100%;
+	height: 100%;
+
 	
 }
 
@@ -138,20 +137,14 @@ html {
 	flex: 1.5;
 	margin-left:10px;
 	margin-right:10px;
-	display: flex;
-	align-items:stretch;
-	flex-direction:column;
-	height:100%;
+
 }
 
 .column-thin {
 	flex: 0.7;
 	margin-left:10px;
 	margin-right:10px;
-	display: flex;
-	align-items:stretch;
-	flex-direction:column;
-	height:100%;
+
 	
 }
 
@@ -218,7 +211,7 @@ html {
 	width:20px;
 }
 
-#output-button {
+.output-button {
 	
 	height:20px;
 	width:auto;
@@ -228,12 +221,12 @@ html {
 	text-align:center;
 	
 }
-#output-button:hover {
+.output-button:hover {
 	
 	background-color: #333300;
 	
 }
-#output-button:active  {
+.output-button:active  {
 	
 	background-color: #AA7700;
 	color: #111100;
@@ -241,8 +234,12 @@ html {
 
 .panel-header {
 	
-	margin: 5px;
+	margin-left:-8px;
+	margin-right:0px;
+	padding:5px;
 	text-align:center;
+	border-bottom: 1px solid #AA7700;
+	background-color: #331500;
 	
 }
 .panel-header p{
@@ -258,11 +255,23 @@ html {
 }
 .upgrade-header{
 	
-	border: 1px solid #AA7700;
+	border-bottom: 1px solid #AA7700;
 	border-top:5px solid #AA7700;
-	margin:-1px;
-	padding:5px;
+	display: flex;
+	align-items:center;
+	
+	
 }
+
+.upgrade-header div{
+	
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: -1px;
+	
+}
+
 .upgrade-header:hover {
 	
 	background-color: #333300;
@@ -275,25 +284,32 @@ html {
 }
 .upgrade-body{
 	
-	border: 1px solid #AA7700;
+	
 	background-color: #111100;
-	margin:-1px;
 	padding:5px;
 	padding-right:10px;
 }
 
 .upgrade-display {
 	
-   display: flex;
-   align-items:center;
-   margin-bottom: -15px;
-
+	border-left: 1px solid #AA7700;
+	display: flex;
+	align-items:center;
+	align-self: flex-end;
+	float: right;
+	flex: 1
 	
 }
 
 .labelspace {
 	
 	width:200px;
+	
+}
+
+#auto-output-interior {
+	
+	
 	
 }
 
@@ -311,6 +327,7 @@ html {
   animation-duration: 0.2s;
   animation-timing-function: ease;
 }
+
 @keyframes slideIn {
   from {
     width: 0px;

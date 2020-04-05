@@ -44,6 +44,28 @@ var resourceMapping = {
         mult: 1,
         idle: 0,
         limit: 100
+    },
+	circuit : {
+        name : "Circuits",
+		icon: "circuit",
+        amount: 0,
+		costList : {"deviations":3,"vactube":3,"boule":1},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
+    },
+	wire : {
+        name : "Wire",
+		icon: "wire",
+        amount: 0,
+		costList : {"deviations":5},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
     }
 };
 
