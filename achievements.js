@@ -22,12 +22,11 @@ var achievements = {
 
 var gameStages = {
 	
+	initialOpening : {unlocked: false, bought: false},
 	upgradeFabricator : {unlocked: false, bought: false},
 	upgradeZoneMelter : {unlocked: false, bought: false},
 	upgradeCircuitMill : {unlocked: false, bought: false},
 	upgradeWireMill : {unlocked: false, bought: false},
-
-
 	projectBlackBox	: {unlocked: false, bought: false},
 	projectFabBox	: {unlocked: false, bought: false}
 	

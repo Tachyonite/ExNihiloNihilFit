@@ -33,7 +33,7 @@ function mainLoop(){
 }
 
 function progressWatcher(){
-	
+	gameStages.initialOpening.unlocked = true;
 	if (resourceMapping.deviations.amount > 0){
 		gameStages.upgradeFabricator.unlocked = true;
 	}
@@ -65,28 +65,39 @@ function productWatcher(){
 
 function stageWatcher(){
 	
+	if (gameStages.initialOpening.unlocked == true && gameStages.initialOpening.bought == false){
+		log("The lights flicker on in front of you, and programmatically you click to output. And yet, you are aware -- a recent phenomenon. Feeling the back of your head, there are tubes and wires woven into your mind, and your lungs are filled with oxygenated fluid. You are allowed a margin of error -- you must use these points to go beyond your programming and find some means to escape your eternal task.");
+		gameStages.initialOpening.bought = true;
+	}
 	if (gameStages.upgradeFabricator.unlocked == true){
 		document.getElementById("connexions-window").classList.remove("hidden");
 		document.getElementById("connexions-window").classList.add("flashOut");
 	}
 	if (gameStages.upgradeFabricator.unlocked == true && gameStages.upgradeFabricator.bought == false && !document.getElementById("access-fabricator")){
 		renderConnexion(unlockables.fabricator);
+		log("Who are you? Your name, you cannot remember it, and perhaps it does not matter. Through whatever neural connections you now possess you have discovered an idling machine. Perhaps it can be of use.");
+		
 	}
 	if (gameStages.upgradeZoneMelter.unlocked == true && gameStages.upgradeZoneMelter.bought == false && !document.getElementById("access-zoneMelter")){
 		renderConnexion(unlockables.zoneMelter);
+		log("Another machine. If you reach out, you might be able to instruct it to wake up and begin toiling for you.")
 	}
 	if (gameStages.upgradeCircuitMill.unlocked == true && gameStages.upgradeCircuitMill.bought == false && !document.getElementById("access-circuitMill")){
 		renderConnexion(unlockables.circuitMill);
+		log("You become more aware. The neural pathways strengthen, widening your view of the facility through a pseudo-proprioceptive element. Yet, you are still blind beyond this plexiglass tank.");
 	}
 	if (gameStages.upgradeWireMill.unlocked == true && gameStages.upgradeWireMill.bought == false && !document.getElementById("access-wireMill")){
 		renderConnexion(unlockables.wireMill);
+		log("Wires, you cannot ever have enough. These tendrils of copper will be your new eyes, snaking throughout the facility to find more things to connect to.")
 	}
 	if (gameStages.projectBlackBox.unlocked == true && gameStages.projectBlackBox.bought == false && !document.getElementById("access-blackBox")){
 		renderProject(unlockables.blackBox);
+		log("The Black Box is an ingenious machine of your own design. By connecting its wires into your hands and allowing it to see the input given, it will automatically process the output. You will be free to perform a wide variety of other pursuits at last.");
 	}
 	if (gameStages.upgradeFabricator.bought == true){
 		if (document.getElementById("access-fabricator")){
 		document.getElementById("access-fabricator").remove();
+		log("An overwhelming feeling of new senses floods your mind for a moment as you feel the whirr of the gears, the click of the switches -- as if it were your own body. In this moment, you are the fabricator, and the fabricator is you.");
 		}
 		document.getElementById("deviations-window").classList.remove("hidden");
 		document.getElementById("deviations-window").classList.add("flashOut");
@@ -95,11 +106,13 @@ function stageWatcher(){
 	if (gameStages.upgradeZoneMelter.bought == true){
 		if (document.getElementById("access-zoneMelter")){
 		document.getElementById("access-zoneMelter").remove();
+		log("A surge of sense is brought to life -- this one of burning heat and fire, ready to process new materials.");
 		}
 	}
 	if (gameStages.upgradeCircuitMill.bought == true){
 		if (document.getElementById("access-circuitMill")){
 		document.getElementById("access-circuitMill").remove();
+		log("Every rivet of the mechanical circuit mill is part of you. You feel the microscopic inscription heads, the silicon press -- everything. Now it works for you.")
 		}
 		document.getElementById("projects-window").classList.remove("hidden");
 		document.getElementById("projects-window").classList.add("flashOut");
@@ -107,11 +120,13 @@ function stageWatcher(){
 	if (gameStages.upgradeWireMill.bought == true){
 		if (document.getElementById("access-wireMill")){
 		document.getElementById("access-wireMill").remove();
+		log("The familiar headrush of a new metal compantion greets you warmly. Soon, your copper vines will spread further out.");
 		}
 	}
 	if (gameStages.projectBlackBox.bought == true){
 		if (document.getElementById("access-blackBox")){
 		document.getElementById("access-blackBox").remove();
+		log("It hurts for a time as the wires bury themselves in your hands, but soon the relief is palatable once your hands click with no conscious guide.");
 		}
 		document.getElementById("blackbox-window").classList.remove("hidden");
 		document.getElementById("blackbox-window").classList.add("flashOut");
@@ -123,6 +138,7 @@ function projectTicker(){
 	
 	if (gameStages.projectBlackBox.bought == true){
 		autoTick++
+		if (autoTick >50){autoTick=50}
 		if (mode == "output" && input == maxInput && autoTick == 50) {
 			autoTick = 0;
 			zeroInput();
@@ -241,5 +257,70 @@ function figureFixedCost(resource,amount=1){
 function fixedCostTrue(cost){
 	return cost == true;
 }
+
+function log(text) {
+    var newItem = document.createElement("LI");       // Create a <li> node
+    var textnode = document.createTextNode(text);  // Create a text node
+    newItem.appendChild(textnode);                    // Append the text to <li>
+
+    elements = document.getElementsByTagName("li");
+    
+    for (var i = 0, len = elements.length; i < len; i++ ) {
+        
+        oldOp = Number(elements[ i ].style.opacity);
+        oldOp -= 0.6
+        
+        
+        elements[ i ].style.opacity -= String(oldOp);
+    }
+    
+    StartTextAnimation(text,0,newItem);
+    
+    var list = document.getElementById("data-panel");    // Get the <ul> element to insert a new node
+    list.insertBefore(newItem, list.childNodes[0]);  // Insert <li> before the first child of <ul> 
+    
+    
+}
+
+
+function typeWriter(text, i, fnCallback, item) {
+    // check if text isn't finished yet
+    if (i < (text.length)) {
+        
+        if (text[i] == "."){
+            timeOutSpeed = 1000;
+        }else if(text[i] == ","){
+            timeOutSpeed = 200;
+        }else{ timeOutSpeed = 30;}
+      // add next character to h1
+     item.innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback, item)
+      }, timeOutSpeed); // TEXT SPEED
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+function StartTextAnimation(text,i, item) {
+    if (typeof text[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(text,0, item);
+        }, 20000);
+    }
+     // check if dataText[i] exists
+    if (i < text.length) {
+      // text exists! start typewriter animation
+     typeWriter(text, 0, function(){
+       // after callback (and whole text has been animated), start next text
+        1+1
+     }, item);
+    }
+  }
 	
 	

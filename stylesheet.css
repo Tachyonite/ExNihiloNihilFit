@@ -103,6 +103,7 @@ html {
 	width:100%;
 	scrollbar-color: #AA7700 #221100;
 	scrollbar-width: thin;
+	max-height:300px;
 	padding-bottom:8px;
 	
 }
@@ -327,6 +328,59 @@ html {
   animation-duration: 0.2s;
   animation-timing-function: ease;
 }
+
+#data-panel {
+    
+    margin:10px;
+    padding:10px;
+    
+    color: #B7692F;
+    
+    width: 90%;
+    border-top: 1px solid #4A2A0D;
+    margin: 0px 0px 0px 0px;
+    list-style-type: none;
+    
+    display: flex;
+    flex-direction: column;
+    
+    padding-right: 100px;
+    
+    opacity: 1;
+        
+}
+
+#data-panel li:hover {
+    color: RGBA(255,255,255 ,1);
+}
+
+
+.displayText {
+	
+    color: #B7692F;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Roboto Condensed";
+		
+}
+
+/*
+#TextBody li, .typewritable {
+    overflow: hidden;
+    white-space: nowrap;
+    width: auto;
+    animation: 
+    typing 2.25s steps(40, end)
+}
+*/
+
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
 
 @keyframes slideIn {
   from {
