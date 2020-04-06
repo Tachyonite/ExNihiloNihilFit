@@ -120,13 +120,13 @@ function stageWatcher(){
 	if (gameStages.upgradeWireMill.bought == true){
 		if (document.getElementById("access-wireMill")){
 		document.getElementById("access-wireMill").remove();
-		log("The familiar headrush of a new metal compantion greets you warmly. Soon, your copper vines will spread further out.");
+		log("The familiar headrush of a new metal companion greets you warmly. Soon, your copper vines will spread further out.");
 		}
 	}
 	if (gameStages.projectBlackBox.bought == true){
 		if (document.getElementById("access-blackBox")){
 		document.getElementById("access-blackBox").remove();
-		log("It hurts for a time as the wires bury themselves in your hands, but soon the relief is palatable once your hands click with no conscious guide.");
+		log("It hurts for a time as the wires bury themselves in your hands, but soon the relief is palatable once the fingers click with no conscious guide.");
 		}
 		document.getElementById("blackbox-window").classList.remove("hidden");
 		document.getElementById("blackbox-window").classList.add("flashOut");
