@@ -20,7 +20,7 @@ function renderConnexion(connexion){
 		outCost += "<img class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+"<span style='margin-right:5px;'>"+connexion.costList[cost]+"</span>"
 	}
 	
-	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+connexion.label+"</div><div class='upgrade-display' id=cost-"+connexion.name+">"+outCost+"</div>";
+	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+connexion.label+"</div><div class='upgrade-display' id='cost-"+connexion.name+"'>"+outCost+"</div>";
 	upgradeBody.innerHTML = "<i>"+connexion.desc+"</i>"
 
 	upgrade.appendChild(upgradeHeader);
@@ -52,7 +52,7 @@ function renderProject(project){
 		outCost += "<img class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+"<span style='margin-right:5px;'>"+project.costList[cost]+"</span>"
 	}
 	
-	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+project.label+"</div><div class='upgrade-display' id=cost-"+project.name+">"+outCost+"</div>";
+	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+project.label+"</div><div class='upgrade-display' id='cost-"+project.name+"'>"+outCost+"</div>";
 	upgradeBody.innerHTML = "<i>"+project.desc+"</i>"
 	
 	upgrade.appendChild(upgradeHeader);
@@ -87,7 +87,7 @@ function renderDeviation(deviation){
 		outCost += "<img class='resource-image-small' src='images/"+resourceMapping[cost].icon+".png'>"+"<span style='margin-right:5px;'>"+dResource.costList[cost]+"</span>"
 	}
 	
-	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+deviation.label+"</div><div class='upgrade-display' id=cost-"+deviation.name+">"+outCost+"</div>";
+	upgradeHeader.innerHTML = "<div style='min-width:180px;'>"+deviation.label+"</div><div class='upgrade-display' id='cost-"+deviation.name+"'>"+outCost+"</div>";
 	upgradeBody.innerHTML = "<i>"+deviation.desc+"</i>"
 	upgrade.appendChild(upgradeHeader);
 	upgrade.appendChild(upgradeBody);

@@ -51,6 +51,13 @@ html {
 	
 }
 
+.pad-center {
+	
+	margin-left: 20px;
+	margin-right: 20px;
+	
+}
+
 #main-wrapper {
 	
 	background-color: #111100;
@@ -68,7 +75,6 @@ html {
 	display: flex;
 	align-items:stretch;
 	justify-content: space-around;
-	background-color: #221100;
 	margin-bottom:20px;
 	max-height: 10000px;
 	
@@ -78,7 +84,6 @@ html {
 	display: flex;
 	align-items:stretch;
 	justify-content: space-around;
-	background-color: #221100;
 	margin-bottom:20px;
 	max-height: 10000px;
 	
@@ -91,8 +96,25 @@ html {
 .item {
 	
 	flex:1;
-	width:100%;	
 	padding-left:8px;
+	background-color: #221100;
+
+	
+}
+
+.central-item {
+	
+	flex:1;
+	background-color: #221100;
+	max-width: 33%;
+	
+}
+
+.panel {
+	
+	display: flex;
+	flex-direction:column;
+	padding: 10px;
 	
 }
 
@@ -105,6 +127,7 @@ html {
 	scrollbar-width: thin;
 	max-height:300px;
 	padding-bottom:8px;
+
 	
 }
 
@@ -149,9 +172,21 @@ html {
 	
 }
 
+#central-column{
+	
+	margin-right:20px;
+	
+}
+
 .hidden {
 	
 	display:none;
+	
+}
+
+.backfilled {
+	
+	background-color: #221100;
 	
 }
 
@@ -212,6 +247,12 @@ html {
 	width:20px;
 }
 
+.triple-column{
+	
+	display: flex;
+	
+}
+
 .output-button {
 	
 	height:20px;
@@ -233,6 +274,25 @@ html {
 	color: #111100;
 }
 
+.full-button {
+	
+	height:20px;
+	border: 1px solid #AA7700;
+	padding:5px;
+	text-align:center;
+	
+}
+.full-button:hover {
+	
+	background-color: #333300;
+	
+}
+.full-button:active  {
+	
+	background-color: #AA7700;
+	color: #111100;
+}
+
 .panel-header {
 	
 	margin-left:-8px;
@@ -243,10 +303,42 @@ html {
 	background-color: #331500;
 	
 }
-.panel-header p{
+
+.central-panel-header {
+	
+	margin-left:0px;
+	margin-right:0px;
+	padding:5px;
+	text-align:center;
+	border-bottom: 1px solid #AA7700;
+	background-color: #331500;
+	
+}
+.panel-header p, .central-panel-header p{
 	
 	margin: 0px;
 	
+}
+
+#expansion-tracker{
+	margin:10px;
+}
+
+#progress-bar {
+	
+	margin: 10px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom: 20px;
+	display:flex;
+	height:20px;
+	
+}
+
+#progress-inner {
+	
+	width: 50%;
+	background-color:#AA7700;
 }
 
 .upgrade{

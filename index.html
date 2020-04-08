@@ -74,7 +74,7 @@
 			</div>
 
 			<div id="central-column" class="column-wide">
-				<div id="central-container" class="container vertical">
+				<div id="central-container" class="container vertical backfilled">
 					<div class="border flex-spread">
 						<img height=40 width=40 src="images/panopticon.gif"/>
 						<p>Connected to Panopticon</p>
@@ -103,8 +103,58 @@
 							<div class="output-button" onclick="zeroInput()">Output</div>
 						</div>
 					</div>
-
 				</div>
+				<div id="central-container" class="container vertical">
+					<div class="triple-column">
+						<div id="facility-tab" class="central-item border hidden">
+							<div class="central-panel-header">
+								<p>Facility</p>
+							</div>
+							<div class="panel" id="wire-panel">
+								<div class="upgrade hidden" id="expansion-cable">
+									<div class="upgrade-header" onclick="buyExpansion()">
+										<div style="min-width:110px;">Cable Expansion</div>
+										<div class="upgrade-display" id="cost-fabricator">
+											<img class="resource-image-small" src="images/errorCycle.png">
+											<span id="expand-dev-cost" style="margin-right:5px;">10</span>
+											<img class="resource-image-small" src="images/wire.png">
+											<span id="expand-wire-cost" style="margin-right:5px;">1</span>
+										</div>
+									</div>
+									<div class="upgrade-body"><i>Explore deeper into the catacombs of the machine.</i></div>
+								</div>
+								<div id="network-tracker" class="hidden">
+								Wire Network: <span id="wire-length">350m</span>
+								</div>
+								<div id="expansion-tracker" class="hidden">										
+									<span id="current-expansion">Current Location: Chemical Tanks</span>		
+									<br/>									
+									<span id="current-progress"><span class="border" id="progress-bar"><span id="progress-inner"></span></span></span>								
+									<div class="full-button" >Connect</div>
+								</div>
+							</div>
+						</div>
+						<div class="central-item pad-center border hidden">
+							<div class="central-panel-header">
+								<p>Techframes</p>
+							</div>
+							<div class="scrollbox">
+								<div id="datdfa-panel">
+								</div>
+							</div>
+						</div>
+						<div class="central-item border" hidden>
+							<div class="central-panel-header">
+								<p>Abstractions</p>
+							</div>
+							<div class="scrollbox">
+								<div id="datdfa-panel">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<div id="right-column" class="column-thin">
@@ -113,9 +163,9 @@
 						<div class="panel-header">
 							<p>Datalog</p>
 						</div>
-						<div class="scrollbox">
-						<div id="data-panel">
-						</div>
+						<div class="scrollbox" id="data-outer">
+							<div id="data-panel">
+							</div>
 						</div>
 					</div>
 				</div>

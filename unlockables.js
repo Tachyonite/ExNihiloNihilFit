@@ -97,3 +97,50 @@ var unlockables = {
 	
 	}
 }
+
+expandedFacilities = {
+	
+	chemicalTanks : {
+		
+		name: "chemicalTanks",
+		label: "Chemical Tanks",
+		desc: "Towering chambers of various chemicals flowing through sealed pipes. Acids, alkalines, water and oil are all contained within. Chemicals could be siphoned from this.",
+		difficulty: 1,
+		explored: 0
+		
+	},
+	fusionReactor : {
+		
+		name: "fusionReactor",
+		label: "Fusion Reactor",
+		desc: "A torus of immensely strong mag-stable steel that contains a field of plasma that outputs more energy than it consumes by means of hydrogen fusion. Energy could be redirected from here.",
+		difficulty: 2,
+		explored: 0
+	},
+	megaFab : {
+		
+		name: "megaFab",
+		label: "Mega-Fabricator",
+		desc: "A far more active and expansive fabricator complex, with advanced machinery for producing all manner of goods. Attempting connection to this may bring great automation potential.",
+		difficulty: 3,
+	},
+	
+	organicChambers : {
+		
+		name: "organicChambers",
+		label: "Organic Chambers",
+		desc: "Rows of plexiglass tanks filled with nutrient syrup -- identical to the one you are in except for the size. These are smaller or larger depending on the creature within, and not all are human.",
+		difficulty: 4,
+		explored: 0
+	},
+	
+	computerSwitchboard : {
+		
+		name: "computerSwitchboard",
+		label: "Computer Switchboard",
+		desc: "An superarray of oil-cooled computers that seem to trace cables everywhere. Accessing this could be an important step into further expansion but may require sufficient power or materials.",
+		difficulty: 5,
+		explored: 0
+	}
+	
+}

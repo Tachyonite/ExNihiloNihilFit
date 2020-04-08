@@ -16,13 +16,14 @@ function mainLoop(){
 	stageWatcher();
 	productWatcher();
 	projectTicker();
+	costUpdater();
 	
 	for (resource in resourceMapping){
 		var path = "tracker-"+resourceMapping[resource].name.toLowerCase();
 		var labelPath = "label-"+resourceMapping[resource].name.toLowerCase();
 		var ele = document.getElementById(path);
 		var labelEle = document.getElementById(labelPath);
-		if (resourceMapping[resource].amount > 0 || !labelEle.classList.contains('hidden')){
+		if (labelEle && (resourceMapping[resource].amount > 0 || !labelEle.classList.contains('hidden'))){
 			labelEle.classList.remove('hidden');
 			ele.innerHTML = Math.floor(resourceMapping[resource].amount);
 		}
@@ -48,6 +49,12 @@ function progressWatcher(){
 	}
 	if (gameStages.projectBlackBox.bought == true){
 		gameStages.upgradeWireMill.unlocked = true;
+	}
+	if (resourceMapping.wire.amount > 0){
+		gameStages.expansionWire.unlocked = true;
+	}
+	if (resourceMapping.expansions.amount > 0){
+		gameStages.expansionWire.bought = true;
 	}
 }
 
@@ -77,6 +84,12 @@ function stageWatcher(){
 		renderConnexion(unlockables.fabricator);
 		log("Who are you? Your name, you cannot remember it, and perhaps it does not matter. Through whatever neural connections you now possess you have discovered an idling machine. Perhaps it can be of use.");
 		
+	}
+	if (gameStages.expansionWire.unlocked == true){
+		document.getElementById("facility-tab").classList.remove("hidden");
+		document.getElementById("facility-tab").classList.add("flashOut");
+		document.getElementById("expansion-cable").classList.remove("hidden");
+		document.getElementById("expansion-cable").classList.add("flashOut");
 	}
 	if (gameStages.upgradeZoneMelter.unlocked == true && gameStages.upgradeZoneMelter.bought == false && !document.getElementById("access-zoneMelter")){
 		renderConnexion(unlockables.zoneMelter);
@@ -130,8 +143,22 @@ function stageWatcher(){
 		}
 		document.getElementById("blackbox-window").classList.remove("hidden");
 		document.getElementById("blackbox-window").classList.add("flashOut");
+		
 	}
+	if (gameStages.expansionWire.bought == true){
+		document.getElementById("network-tracker").classList.remove("hidden");
+		document.getElementById("blackbox-window").classList.add("flashOut");
+		
+	}
+}
+
+function costUpdater(){
 	
+	var expansionMult = 1.12;
+	var wireCost = 1 + Math.floor(resourceMapping.expansions.amount ** expansionMult);
+	
+	document.getElementById("expand-wire-cost").innerText=wireCost;	
+	document.getElementById("wire-length").innerText=10*Math.floor((Math.floor(resourceMapping.expansions.amount ** expansionMult) * (Math.floor(resourceMapping.expansions.amount ** expansionMult)+1))/2)+"m";	
 }
 
 function projectTicker(){
@@ -238,6 +265,19 @@ function addResource(resource,amount=1,fixed=true){
     }    
 }
 
+function buyExpansion(){
+	
+	var expansionMult = 1.15;
+	var wireCost = 1 + Math.floor(resourceMapping.expansions.amount ** expansionMult);
+	
+	if (resourceMapping.wire.amount >= wireCost && resourceMapping["deviations"].amount >= resourceMapping.expansions.costList["deviations"]){
+		resourceMapping["expansions"].amount += 1;
+		resourceMapping["deviations"].amount -= resourceMapping.expansions.costList["deviations"];
+		resourceMapping["wire"].amount -= wireCost;
+	}
+	
+}
+
 function figureFixedCost(resource,amount=1){
     var outCheck = [];
 	for (costRes in resource.costList){	
@@ -277,8 +317,8 @@ function log(text) {
     StartTextAnimation(text,0,newItem);
     
     var list = document.getElementById("data-panel");    // Get the <ul> element to insert a new node
-    list.insertBefore(newItem, list.childNodes[0]);  // Insert <li> before the first child of <ul> 
-    
+       // Get the <ul> element to insert a new node
+    list.appendChild(newItem, list.childNodes[0]);  // Insert <li> before the first child of <ul> 
     
 }
 
@@ -294,7 +334,8 @@ function typeWriter(text, i, fnCallback, item) {
         }else{ timeOutSpeed = 30;}
       // add next character to h1
      item.innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
-
+	 var list2 = document.getElementById("data-outer"); 
+	 list2.scrollTop = list2.scrollHeight;
       // wait for a while and call this function again for next character
       setTimeout(function() {
         typeWriter(text, i + 1, fnCallback, item)

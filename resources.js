@@ -66,6 +66,17 @@ var resourceMapping = {
         mult: 1,
         idle: 0,
         limit: 100
+    },
+	expansions : {
+        name : "Expansions",
+		icon: "wire",
+        amount: 0,
+		costList : {"deviations":10,"wire":1},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
     }
 };
 
