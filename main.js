@@ -101,7 +101,6 @@ function stageWatcher(){
 	}
 	if (gameStages.upgradeWireMill.unlocked == true && gameStages.upgradeWireMill.bought == false && !document.getElementById("access-wireMill")){
 		renderConnexion(unlockables.wireMill);
-		log("Wires, you cannot ever have enough. These tendrils of copper will be your new eyes, snaking throughout the facility to find more things to connect to.")
 	}
 	if (gameStages.projectBlackBox.unlocked == true && gameStages.projectBlackBox.bought == false && !document.getElementById("access-blackBox")){
 		renderProject(unlockables.blackBox);
@@ -148,7 +147,6 @@ function stageWatcher(){
 	if (gameStages.expansionWire.bought == true){
 		document.getElementById("network-tracker").classList.remove("hidden");
 		document.getElementById("blackbox-window").classList.add("flashOut");
-		
 	}
 }
 
@@ -156,9 +154,14 @@ function costUpdater(){
 	
 	var expansionMult = 1.12;
 	var wireCost = 1 + Math.floor(resourceMapping.expansions.amount ** expansionMult);
-	
+	var calcLen = 10*Math.floor((Math.floor(resourceMapping.expansions.amount ** expansionMult) * (Math.floor(resourceMapping.expansions.amount ** expansionMult)+1))/2)
 	document.getElementById("expand-wire-cost").innerText=wireCost;	
-	document.getElementById("wire-length").innerText=10*Math.floor((Math.floor(resourceMapping.expansions.amount ** expansionMult) * (Math.floor(resourceMapping.expansions.amount ** expansionMult)+1))/2)+"m";	
+	if (calcLen <= 1000){
+		document.getElementById("wire-length").innerText=calcLen+"m";	
+	} else {
+		document.getElementById("wire-length").innerText=Number((calcLen/1000).toFixed(2))+"km";		
+	}
+
 }
 
 function projectTicker(){

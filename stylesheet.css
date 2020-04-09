@@ -93,6 +93,12 @@ html {
 	flex-direction: column;
 }
 
+#network-tracker {
+	
+	margin-left: 8px;
+	
+}
+
 .item {
 	
 	flex:1;
@@ -114,7 +120,7 @@ html {
 	
 	display: flex;
 	flex-direction:column;
-	padding: 10px;
+	padding: 8px;
 	
 }
 

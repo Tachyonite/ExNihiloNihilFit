@@ -28,7 +28,8 @@ var gameStages = {
 	upgradeCircuitMill : {unlocked: false, bought: false},
 	upgradeWireMill : {unlocked: false, bought: false},
 	projectBlackBox	: {unlocked: false, bought: false},
-	projectFabBox	: {unlocked: false, bought: false},
+	projectNeuralBox	: {unlocked: false, bought: false},
+	projectOptics	: {unlocked: false, bought: false},
 	expansionWire	: {unlocked: false, bought: false}
 	
 }
