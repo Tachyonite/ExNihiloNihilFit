@@ -106,6 +106,7 @@ expandedFacilities = {
 		label: "Chemical Tanks",
 		desc: "Towering chambers of various chemicals flowing through sealed pipes. Acids, alkalines, water and oil are all contained within. Chemicals could be siphoned from this.",
 		difficulty: 1,
+		cost : 100,
 		explored: 0
 		
 	},

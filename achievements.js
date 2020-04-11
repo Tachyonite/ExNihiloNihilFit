@@ -30,7 +30,13 @@ var gameStages = {
 	projectBlackBox	: {unlocked: false, bought: false},
 	projectNeuralBox	: {unlocked: false, bought: false},
 	projectOptics	: {unlocked: false, bought: false},
-	expansionWire	: {unlocked: false, bought: false}
+	expansionWire	: {unlocked: false, bought: false},
+	
+	facilityChemicalTanks : {unlocked: false, bought: false},
+	facilityfusionReactor : {unlocked: false, bought: false},
+	facilitymegaFab : {unlocked: false, bought: false},
+	facilityorganicChambers : {unlocked: false, bought: false},
+	facilitycomputerSwitchboard : {unlocked: false, bought: false}
 	
 }
 

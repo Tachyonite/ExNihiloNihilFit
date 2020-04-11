@@ -4,7 +4,8 @@ function save() {
         
         resourceMapping: resourceMapping,
 		achievements: achievements,
-		gameStages : gameStages
+		gameStages : gameStages,
+		expandedFacilities : expandedFacilities
         
     }
 
@@ -19,6 +20,7 @@ function load(){
     if (savegame.resourceMapping != "undefined"){resourceMapping=savegame.resourceMapping}
     if (savegame.achievements != "undefined"){achievements=savegame.achievements}
     if (savegame.gameStages != "undefined"){gameStages=savegame.gameStages}
+    if (savegame.expandedFacilities != "undefined"){expandedFacilities=savegame.expandedFacilities}
 	
 	searchAchieves();
 	

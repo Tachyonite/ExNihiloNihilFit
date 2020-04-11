@@ -6,9 +6,14 @@ var inputInterval = setInterval( drawInput, 100);
 var tickInputInterval = setInterval( increaseInput, 200);
 var mainLoopInterval = setInterval( mainLoop, 100);
 
-var autoTick = 0
-var autoModes = ["output"]
-var mode = autoModes[0]
+var autoTick = 0;
+var facilityTick = 0;
+var autoModes = ["output"];
+
+var calcLen = 0;
+var explored = 0;
+
+var mode = autoModes[0];
 
 function mainLoop(){
 	
@@ -17,6 +22,7 @@ function mainLoop(){
 	productWatcher();
 	projectTicker();
 	costUpdater();
+	facilityTracker();
 	
 	for (resource in resourceMapping){
 		var path = "tracker-"+resourceMapping[resource].name.toLowerCase();
@@ -56,6 +62,15 @@ function progressWatcher(){
 	if (resourceMapping.expansions.amount > 0){
 		gameStages.expansionWire.bought = true;
 	}
+	if (calcLen > 50 ) {
+		gameStages.facilityChemicalTanks.unlocked = true;
+	}
+	if (calcLen > 500 && gameStages.facilityChemicalTanks.bought) {
+		gameStages.facilityFusionReactor.unlocked = true;
+	}
+	if (calcLen > 2000 && gameStages.facilityFusionReactor.bought) {
+		gameStages.facilityMegaFab.unlocked = true;
+	}
 }
 
 function productWatcher(){
@@ -71,6 +86,8 @@ function productWatcher(){
 }
 
 function stageWatcher(){
+	
+	document.getElementById("expansion-tracker").classList.add("hidden");
 	
 	if (gameStages.initialOpening.unlocked == true && gameStages.initialOpening.bought == false){
 		log("The lights flicker on in front of you, and programmatically you click to output. And yet, you are aware -- a recent phenomenon. Feeling the back of your head, there are tubes and wires woven into your mind, and your lungs are filled with oxygenated fluid. You are allowed a margin of error -- you must use these points to go beyond your programming and find some means to escape your eternal task.");
@@ -148,13 +165,62 @@ function stageWatcher(){
 		document.getElementById("network-tracker").classList.remove("hidden");
 		document.getElementById("blackbox-window").classList.add("flashOut");
 	}
+	if (gameStages.facilityChemicalTanks.unlocked == true && gameStages.facilityChemicalTanks.bought == false){
+		document.getElementById("expansion-tracker").classList.remove("hidden");
+		document.getElementById("current-expansion").innerText = "Chemical Tanks";
+		document.getElementById("current-expansion-desc").innerText = expandedFacilities.chemicalTanks.desc;
+		document.getElementById("connect-dev-cost").innerText = expandedFacilities.chemicalTanks.cost;
+		document.getElementById("expansion-tracker").classList.add("flashOut");
+		log("And through these expanding wires you detect another reading -- gigantic chemical tanks containing all manner of esoteric oils, fluids, reagents, solvents and catalysts. Being able to tap into these would be a grand prospect with many industrial applications. Working out how to interface with this machine may prove time-consuming.");
+	}
+	if (gameStages.facilityChemicalTanks.bought == true){
+		log("It takes some time to create a code the sub-facility recognises as a valid connection, yet eventually the task is complete. With a satisfying surge of newfound scale, the subsystems of the chemical tanks subsume into your being. Yet, you are still as a mouse in the kitchen, only taking crumbs here and there...");
+	}
+}
+
+function facilityTracker(){
+	
+	if (facilityTick >25){facilityTick=0}
+	if (facilityTick == 0){
+		if (gameStages.facilityChemicalTanks.unlocked == true && gameStages.facilityChemicalTanks.bought == false){
+			explored = expandedFacilities.chemicalTanks.explored;
+			if (expandedFacilities.chemicalTanks.explored < 100) {
+				expandedFacilities.chemicalTanks.explored += 1 / expandedFacilities.chemicalTanks.difficulty;
+			}
+			
+		}
+	}
+	
+	document.getElementById("progress-inner").style = "width:"+explored+"%;";
+	if (explored == 100){
+		
+		document.getElementById("facility-connector").classList.remove("hidden");
+		document.getElementById("facility-connector").classList.add("flashOut");
+		
+	}
+	facilityTick++
+}
+
+function connectFacility(){
+	
+	if (gameStages.facilityChemicalTanks.unlocked == true && gameStages.facilityChemicalTanks.bought == false){
+		
+		if (figureSingleCost(expandedFacilities.chemicalTanks)){
+			
+			gameStages.facilityChemicalTanks.bought = true;
+			resourceMapping.deviations.amount -= expandedFacilities.chemicalTanks.cost;
+			
+		}
+		
+	}
+	
 }
 
 function costUpdater(){
 	
 	var expansionMult = 1.12;
 	var wireCost = 1 + Math.floor(resourceMapping.expansions.amount ** expansionMult);
-	var calcLen = 10*Math.floor((Math.floor(resourceMapping.expansions.amount ** expansionMult) * (Math.floor(resourceMapping.expansions.amount ** expansionMult)+1))/2)
+	calcLen = 10*Math.floor((Math.floor(resourceMapping.expansions.amount ** expansionMult) * (Math.floor(resourceMapping.expansions.amount ** expansionMult)+1))/2)
 	document.getElementById("expand-wire-cost").innerText=wireCost;	
 	if (calcLen <= 1000){
 		document.getElementById("wire-length").innerText=calcLen+"m";	
@@ -295,6 +361,14 @@ function figureFixedCost(resource,amount=1){
 	else{
 		return false;
 		}
+}
+
+function figureSingleCost(resource,amount=1){
+    var outCheck = [];
+		if (resourceMapping["deviations"].amount >= resource.cost){
+			return true;
+		}
+		else{return false;}
 }
 
 function fixedCostTrue(cost){

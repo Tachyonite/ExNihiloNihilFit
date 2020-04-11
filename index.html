@@ -55,7 +55,7 @@
 					<div id="deviations-window" class="container-side hidden">
 						<div class="item border">
 							<div class="panel-header">
-								<p>Deviations</p>
+								<p>Fabrications</p>
 							</div>
 							<div id="deviation-panel" class="scrollbox">
 							</div>
@@ -64,7 +64,7 @@
 					<div id="projects-window" class="container hidden">
 						<div class="item border">
 							<div class="panel-header">
-								<p>Projects</p>
+								<p>Deviations</p>
 							</div>
 							<div id="projects-panel" class="scrollbox">
 							</div>
@@ -127,10 +127,18 @@
 								Wire Network: <span id="wire-length">350m</span>
 								</div>
 								<div id="expansion-tracker" class="hidden">										
-									Current Location: <span id="current-expansion">Chemical Tanks</span>		
+									<span class="tooltip">Current Location: <span id="current-expansion-desc" class="tooltiptext">Your contribution to Panopticon.</span><span id="current-expansion">Chemical Tanks</span></span>	
 									<br/>									
 									<span id="current-progress"><span class="border" id="progress-bar"><span id="progress-inner"></span></span></span>								
-									<div class="full-button" >Connect</div>
+									<div id="facility-connector" class="hidden">
+									<div class="upgrade-header border" onclick="connectFacility()">
+										<div style="min-width:110px;">Connect</div>
+										<div class="upgrade-display" id="cost-connection">
+											<img class="resource-image-small" src="images/errorCycle.png">
+											<span id="connect-dev-cost" style="margin-right:5px;">10</span>
+										</div>
+									</div>
+									</div>
 								</div>
 							</div>
 						</div>

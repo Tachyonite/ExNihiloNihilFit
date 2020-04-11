@@ -419,6 +419,13 @@ html {
   animation-timing-function: ease;
 
 }
+.slideInAuto {
+    
+  animation-name: slideInAuto;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+
+}
 
 .flashOut {
     
@@ -491,6 +498,16 @@ html {
     width: 20px;
 	opacity:1;
 	background-color: #AA7700;
+  }
+}
+
+@keyframes slideInAuto {
+  from {
+    width: 0px;
+  }
+
+  to {
+    width: 100%;
   }
 }
 
