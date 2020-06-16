@@ -42,6 +42,26 @@ var unlockables = {
 		costList : {"deviations":5}
 	
 	},
+	
+	waterDucts : {
+		name : "waterDucts",
+		label: "Access Water Ducts",
+		desc : "Connect a series of tubes to the piping that conveys water around the chemical tanks.",
+		type : "connexion",
+		link: "upgradeWaterDucts",
+		costList : {"deviations":50,"pipe":3}
+	
+	},
+	
+	oilTank : {
+		name : "oilTank",
+		label: "Access Oil Tank",
+		desc : "Extend the pipe networks out to a leviathan of an oil tank, which can then be siphoned from.",
+		type : "connexion",
+		link: "upgradeOilTank",
+		costList : {"deviations":100,"pipe":10}
+	
+	},
 
 	/////// DEVIATIONS FROM HERE
 
@@ -75,6 +95,30 @@ var unlockables = {
 		type : "deviations"
 	},
 	
+	pipe : {
+		name : "pipe",
+		label: "Construct Pipe",
+		desc : "Fabricate the piping necessary to transport fluids around the facility.",
+		req : "facilityChemicalTanks",
+		type : "deviations"
+	},
+	
+	oil : {
+		name : "oil",
+		label: "Siphon Oil",
+		desc : "Reroute oil to a secure secondary tank to be used at later convenience.",
+		req : "upgradeOilTank",
+		type : "deviations"
+	},
+	
+	water : {
+		name : "water",
+		label: "Siphon Water",
+		desc : "Reroute water to a large tank for use later on.",
+		req : "upgradeWaterDucts",
+		type : "deviations"
+	},
+	
 	/////// PROJECTS FROM HERE
 	
 	blackBox : {
@@ -87,12 +131,12 @@ var unlockables = {
 	
 	},
 	
-	fabBox : {
-		name : "fabBox",
+	wireBox : {
+		name : "wireBox",
 		label: "Expand Black Box",
-		desc : "Connect the Black Box to other subsystems, allowing it to instead manage production.",
+		desc : "Connect the Black Box to the wiremill, to automatically produce wire over time at no deviation cost.",
 		type : "projects",
-		link: "projectFabBox",
+		link: "projectWireBox",
 		costList : {"deviations":50,"circuit":5,"vactube":10}
 	
 	}
@@ -115,7 +159,8 @@ expandedFacilities = {
 		name: "fusionReactor",
 		label: "Fusion Reactor",
 		desc: "A torus of immensely strong mag-stable steel that contains a field of plasma that outputs more energy than it consumes by means of hydrogen fusion. Energy could be redirected from here.",
-		difficulty: 2,
+		difficulty: 4,
+		cost: 500,
 		explored: 0
 	},
 	megaFab : {
@@ -123,7 +168,9 @@ expandedFacilities = {
 		name: "megaFab",
 		label: "Mega-Fabricator",
 		desc: "A far more active and expansive fabricator complex, with advanced machinery for producing all manner of goods. Attempting connection to this may bring great automation potential.",
-		difficulty: 3,
+		difficulty: 10,
+		cost: 2000,
+		explored: 0
 	},
 	
 	organicChambers : {
@@ -131,7 +178,8 @@ expandedFacilities = {
 		name: "organicChambers",
 		label: "Organic Chambers",
 		desc: "Rows of plexiglass tanks filled with nutrient syrup -- identical to the one you are in except for the size. These are smaller or larger depending on the creature within, and not all are human.",
-		difficulty: 4,
+		difficulty: 20,
+		cost: 10000,
 		explored: 0
 	},
 	
@@ -140,7 +188,8 @@ expandedFacilities = {
 		name: "computerSwitchboard",
 		label: "Computer Switchboard",
 		desc: "An superarray of oil-cooled computers that seem to trace cables everywhere. Accessing this could be an important step into further expansion but may require sufficient power or materials.",
-		difficulty: 5,
+		difficulty: 50,
+		cost: 50000,
 		explored: 0
 	}
 	

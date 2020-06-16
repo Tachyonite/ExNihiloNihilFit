@@ -48,6 +48,15 @@
 									<tr id="label-wire" class="hidden tooltip">
 										<td><span class="tooltiptext">Snakes of copper, they are your new eyes.</span><img class="resource-image" src="images/wire.png"/></td><td>Wire</td><td id="tracker-wire"></td>
 									</tr>
+									<tr id="label-pipe" class="hidden tooltip">
+										<td><span class="tooltiptext">Wide cylinders of metal to transport fluids.</span><img class="resource-image" src="images/pipe.png"/></td><td>Pipe</td><td id="tracker-pipe"></td>
+									</tr>
+									<tr id="label-water" class="hidden tooltip">
+										<td><span class="tooltiptext">The quintessential liquid of life.</span><img class="resource-image" src="images/water.png"/></td><td>Water</td><td id="tracker-water"></td>
+									</tr>
+									<tr id="label-oil" class="hidden tooltip">
+										<td><span class="tooltiptext">Thick, refined hydrocarbons for fuel and profit.</span><img class="resource-image" src="images/oil.png"/></td><td>Oil</td><td id="tracker-oil"></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -55,16 +64,31 @@
 					<div id="deviations-window" class="container-side hidden">
 						<div class="item border">
 							<div class="panel-header">
-								<p>Fabrications</p>
+								<p>Deviations</p>
 							</div>
+							
 							<div id="deviation-panel" class="scrollbox">
+							
+								<div class="upgrade tooltip" id="deviation-vactube">
+									<div class="upgrade-header">
+										<span class="tooltiptext">Skim molten glass from a foundry and create a simple transistor.</span>
+										<div style="display:flex;min-width:180px;"><img style="margin-right:10px;" class="resource-image-small" src="images/vacTube.png">Fabricate Vactube</div>
+										<div class="upgrade-display" id="cost-vactube">
+											<img class="resource-image-small" src="images/errorCycle.png">
+											<span style="margin-right:5px;">1</span>
+										</div>
+										
+									</div>
+									
+								</div>
+								
 							</div>
 						</div>
 					</div>
 					<div id="projects-window" class="container hidden">
 						<div class="item border">
 							<div class="panel-header">
-								<p>Deviations</p>
+								<p>Projects</p>
 							</div>
 							<div id="projects-panel" class="scrollbox">
 							</div>

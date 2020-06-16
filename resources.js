@@ -67,6 +67,40 @@ var resourceMapping = {
         idle: 0,
         limit: 100
     },
+	pipe : {
+        name : "Pipe",
+		icon: "pipe",
+        amount: 0,
+		costList : {"deviations":10},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
+    },
+	water : {
+        name : "Water",
+		icon: "water",
+        amount: 0,
+		costList : {"deviations":2,"pipe":1},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
+    },
+	oil : {
+        name : "Oil",
+		icon: "oil",
+        amount: 0,
+		costList : {"deviations":2,"pipe":2},
+        clickValue: 1,
+        fps: 0,
+        mult: 1,
+        idle: 0,
+        limit: 100
+    },
+	
 	expansions : {
         name : "Expansions",
 		icon: "wire",

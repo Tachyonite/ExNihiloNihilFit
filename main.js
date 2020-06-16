@@ -119,6 +119,12 @@ function stageWatcher(){
 	if (gameStages.upgradeWireMill.unlocked == true && gameStages.upgradeWireMill.bought == false && !document.getElementById("access-wireMill")){
 		renderConnexion(unlockables.wireMill);
 	}
+	if (gameStages.upgradeWaterDucts.unlocked == true && gameStages.upgradeWaterDucts.bought == false && !document.getElementById("access-waterDucts")){
+		renderConnexion(unlockables.waterDucts);
+	}
+	if (gameStages.upgradeOilTank.unlocked == true && gameStages.upgradeOilTank.bought == false && !document.getElementById("access-oilTank")){
+		renderConnexion(unlockables.oilTank);
+	}
 	if (gameStages.projectBlackBox.unlocked == true && gameStages.projectBlackBox.bought == false && !document.getElementById("access-blackBox")){
 		renderProject(unlockables.blackBox);
 		log("The Black Box is an ingenious machine of your own design. By connecting its wires into your hands and allowing it to see the input given, it will automatically process the output. You will be free to perform a wide variety of other pursuits at last.");
@@ -152,6 +158,18 @@ function stageWatcher(){
 		log("The familiar headrush of a new metal companion greets you warmly. Soon, your copper vines will spread further out.");
 		}
 	}
+	if (gameStages.upgradeWaterDucts.bought == true){
+		if (document.getElementById("access-waterDucts")){
+		document.getElementById("access-waterDucts").remove();
+		log("The pipe is carried into place by a servile drone with divergent instructions, and seals - nice hiss.");
+		}
+	}
+	if (gameStages.upgradeOilTank.bought == true){
+		if (document.getElementById("access-oilTank")){
+		document.getElementById("access-oilTank").remove();
+		log("The familiar headrush of a new metal companion greets you warmly. Soon, your copper vines will spread further out.");
+		}
+	}
 	if (gameStages.projectBlackBox.bought == true){
 		if (document.getElementById("access-blackBox")){
 		document.getElementById("access-blackBox").remove();
@@ -171,10 +189,25 @@ function stageWatcher(){
 		document.getElementById("current-expansion-desc").innerText = expandedFacilities.chemicalTanks.desc;
 		document.getElementById("connect-dev-cost").innerText = expandedFacilities.chemicalTanks.cost;
 		document.getElementById("expansion-tracker").classList.add("flashOut");
-		log("And through these expanding wires you detect another reading -- gigantic chemical tanks containing all manner of esoteric oils, fluids, reagents, solvents and catalysts. Being able to tap into these would be a grand prospect with many industrial applications. Working out how to interface with this machine may prove time-consuming.");
+		//log("And through these expanding wires you detect another reading -- gigantic chemical tanks containing all manner of esoteric oils, fluids, reagents, solvents and catalysts. Being able to tap into these would be a grand prospect with many industrial applications. Working out how to interface with this machine may prove time-consuming.");
 	}
 	if (gameStages.facilityChemicalTanks.bought == true){
-		log("It takes some time to create a code the sub-facility recognises as a valid connection, yet eventually the task is complete. With a satisfying surge of newfound scale, the subsystems of the chemical tanks subsume into your being. Yet, you are still as a mouse in the kitchen, only taking crumbs here and there...");
+		//log("It takes some time to create a code the sub-facility recognises as a valid connection, yet eventually the task is complete. With a satisfying surge of newfound scale, the subsystems of the chemical tanks subsume into your being. Yet, you are still as a mouse in the kitchen, only taking crumbs here and there...");
+		gameStages.upgradeWaterDucts.unlocked = true;
+		gameStages.upgradeOilTank.unlocked = true;
+	
+	}
+	if (gameStages.facilityFusionReactor.unlocked == true && gameStages.facilityFusionReactor.bought == false){
+		document.getElementById("expansion-tracker").classList.remove("hidden");
+		document.getElementById("current-expansion").innerText = "Fusion Reactor";
+		document.getElementById("current-expansion-desc").innerText = expandedFacilities.fusionReactor.desc;
+		document.getElementById("connect-dev-cost").innerText = expandedFacilities.fusionReactor.cost;
+		document.getElementById("expansion-tracker").classList.add("flashOut");
+		//log("And through these expanding wires you detect another reading -- gigantic chemical tanks containing all manner of esoteric oils, fluids, reagents, solvents and catalysts. Being able to tap into these would be a grand prospect with many industrial applications. Working out how to interface with this machine may prove time-consuming.");
+	}
+	if (gameStages.facilityFusionReactor.bought == true){
+		//log("It takes some time to create a code the sub-facility recognises as a valid connection, yet eventually the task is complete. With a satisfying surge of newfound scale, the subsystems of the chemical tanks subsume into your being. Yet, you are still as a mouse in the kitchen, only taking crumbs here and there...");
+		gameStages.upgradeEnergyConduit.unlocked = true;
 	}
 }
 
@@ -186,6 +219,13 @@ function facilityTracker(){
 			explored = expandedFacilities.chemicalTanks.explored;
 			if (expandedFacilities.chemicalTanks.explored < 100) {
 				expandedFacilities.chemicalTanks.explored += 1 / expandedFacilities.chemicalTanks.difficulty;
+			}
+			
+		}
+		if (gameStages.facilityFusionReactor.unlocked == true && gameStages.facilityFusionReactor.bought == false){
+			explored = expandedFacilities.fusionReactor.explored;
+			if (expandedFacilities.fusionReactor.explored < 100) {
+				expandedFacilities.fusionReactor.explored += 1 / expandedFacilities.fusionReactor.difficulty;
 			}
 			
 		}
@@ -321,14 +361,12 @@ function drawInput(){
 
 function addResource(resource,amount=1,fixed=true){
     if (fixed){
-        if (figureFixedCost(resourceMapping[resource])){
-            if (resourceMapping[resource].limit > resourceMapping[resource].amount){
-                for (costRes in resourceMapping[resource].costList){
-					resourceMapping[costRes].amount -= resourceMapping[resource].costList[costRes];
-				}
-                resourceMapping[resource].amount += amount;
-                
-            }
+        if (figureFixedCost(resourceMapping[resource],amount)){
+			for (costRes in resourceMapping[resource].costList){
+				resourceMapping[costRes].amount -= resourceMapping[resource].costList[costRes] * amount;
+			}
+			resourceMapping[resource].amount += amount;
+			
         
         }  
     }    
@@ -350,7 +388,7 @@ function buyExpansion(){
 function figureFixedCost(resource,amount=1){
     var outCheck = [];
 	for (costRes in resource.costList){	
-		if (resourceMapping[costRes].amount >= resource.costList[costRes]){
+		if (resourceMapping[costRes].amount >= resource.costList[costRes] * amount){
 			outCheck.push(true);
 		}
 		else{outCheck.push(false)}
@@ -365,7 +403,7 @@ function figureFixedCost(resource,amount=1){
 
 function figureSingleCost(resource,amount=1){
     var outCheck = [];
-		if (resourceMapping["deviations"].amount >= resource.cost){
+		if (resourceMapping["deviations"].amount * amount >= resource.cost * amount){
 			return true;
 		}
 		else{return false;}
@@ -376,6 +414,7 @@ function fixedCostTrue(cost){
 }
 
 function log(text) {
+	var list = document.getElementById("data-panel");
     var newItem = document.createElement("LI");       // Create a <li> node
     var textnode = document.createTextNode(text);  // Create a text node
     newItem.appendChild(textnode);                    // Append the text to <li>
@@ -393,7 +432,7 @@ function log(text) {
     
     StartTextAnimation(text,0,newItem);
     
-    var list = document.getElementById("data-panel");    // Get the <ul> element to insert a new node
+        // Get the <ul> element to insert a new node
        // Get the <ul> element to insert a new node
     list.appendChild(newItem, list.childNodes[0]);  // Insert <li> before the first child of <ul> 
     

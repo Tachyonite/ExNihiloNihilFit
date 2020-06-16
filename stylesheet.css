@@ -1,8 +1,9 @@
 html {
 
-	background-color: #111100;
+	background-color: #110000;
 	font-family:Abel;
-	color: #CCAA00;
+	color: #CC0;
+	font-size: 1rem;
 	-webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -18,8 +19,8 @@ html {
 	position: absolute;
 	left: 0px;
 	height: 26px;
-	background-color: #221100;
-	border-bottom: 1px solid #AA7700;
+	background-color: #220000;
+	border-bottom: 1px solid #AA0000;
 	width: 100%;
     display: flex;
     justify-content: space-between;
@@ -28,10 +29,10 @@ html {
 
 .header-item {
     display: inline;
-    color: #AA7700;
+    color: #AA0000;
 }
 .header-item a{
-    color: #AA7700;
+    color: #AA0000;
     margin-right: 20px;
 }
 
@@ -40,14 +41,14 @@ html {
 	
 	padding-left: 10px;
 	padding-top: 3px;
-	color: #AA7700;
+	color: #AA0000;
 	
 }
 
 .border {
 	
-	border: 1px solid #AA7700;
-	border-top: 2px solid #AA7700;
+	border: 1px solid #AA0000;
+	border-top: 2px solid #AA0000;
 	
 }
 
@@ -60,7 +61,7 @@ html {
 
 #main-wrapper {
 	
-	background-color: #111100;
+	background-color: #110000;
 	padding-top:44px;
 	display:flex;
 	flex-direction: row;
@@ -103,7 +104,7 @@ html {
 	
 	flex:1;
 	padding-left:8px;
-	background-color: #221100;
+	background-color: #220000;
 
 	
 }
@@ -111,7 +112,7 @@ html {
 .central-item {
 	
 	flex:1;
-	background-color: #221100;
+	background-color: #220000;
 	max-width: 33%;
 	
 }
@@ -129,7 +130,7 @@ html {
 	overflow-y: scroll;
 	overflow-x: hidden;
 	width:100%;
-	scrollbar-color: #AA7700 #221100;
+	scrollbar-color: #AA0000 #220000;
 	scrollbar-width: thin;
 	max-height:300px;
 	padding-bottom:8px;
@@ -139,7 +140,7 @@ html {
 
 .scrollbox::-webkit-scrollbar {
     width: 5px;
-    background-color: #221100;
+    background-color: #220000;
 } 
 
 .flex-spread {
@@ -192,7 +193,7 @@ html {
 
 .backfilled {
 	
-	background-color: #221100;
+	background-color: #220000;
 	
 }
 
@@ -208,8 +209,8 @@ html {
 	
 	height:3px;
 	width: 20px;
-	border-top: 1px solid #AA7700;
-	border-bottom: 1px solid #AA7700;
+	border-top: 1px solid #AA0000;
+	border-bottom: 1px solid #AA0000;
 	margin:-1px;
 	
 }
@@ -218,7 +219,7 @@ html {
 	
 	height:20px;
 	width: 20px;
-	border: 3px double #AA7700;
+	border: 3px double #AA0000;
 	margin: 1px;
 	
 }
@@ -228,7 +229,7 @@ html {
 	height:20px;
 	width: 20px;
 	margin: 0px;
-	background-color: #111100;
+	background-color: #110000;
 	color:#111100;
 	text-align:center;
 	font-weight:bold;
@@ -236,7 +237,7 @@ html {
 }
 
 .full-pip {
-	background-color: #AA7700;
+	background-color: #AA0000;
 }
 
 #resource-panel tr td img{
@@ -264,39 +265,39 @@ html {
 	height:20px;
 	width:auto;
 	flex-grow: 2;
-	border: 1px solid #AA7700;
+	border: 1px solid #AA0000;
 	padding:5px;
 	text-align:center;
 	
 }
 .output-button:hover {
 	
-	background-color: #333300;
+	background-color: #330000;
 	
 }
 .output-button:active  {
 	
-	background-color: #AA7700;
-	color: #111100;
+	background-color: #AA0000;
+	color: #110000;
 }
 
 .full-button {
 	
 	height:20px;
-	border: 1px solid #AA7700;
+	border: 1px solid #AA0000;
 	padding:5px;
 	text-align:center;
 	
 }
 .full-button:hover {
 	
-	background-color: #333300;
+	background-color: #330000;
 	
 }
 .full-button:active  {
 	
-	background-color: #AA7700;
-	color: #111100;
+	background-color: #AA0000;
+	color: #110000;
 }
 
 .panel-header {
@@ -305,8 +306,12 @@ html {
 	margin-right:0px;
 	padding:5px;
 	text-align:center;
-	border-bottom: 1px solid #AA7700;
-	background-color: #331500;
+	border-bottom: 1px solid #AA0000;
+	background-color: #330000;
+	font-weight: bold;
+	font-size: 1.1rem;
+	display:relative;
+	z-index:1;
 	
 }
 
@@ -316,8 +321,9 @@ html {
 	margin-right:0px;
 	padding:5px;
 	text-align:center;
-	border-bottom: 1px solid #AA7700;
-	background-color: #331500;
+	border-bottom: 1px solid #AA0000;
+	background-color: #330000;
+	font-weight: bold;
 	
 }
 .panel-header p, .central-panel-header p{
@@ -344,18 +350,18 @@ html {
 #progress-inner {
 	
 	width: 50%;
-	background-color:#AA7700;
+	background-color:#AA0000;
 }
 
 .upgrade{
 	
-	border: 1px solid #AA7700;
+	border: 1px solid #AA0000;
 	margin:10px;
 }
 .upgrade-header{
 	
-	border-bottom: 1px solid #AA7700;
-	border-top:5px solid #AA7700;
+	border-bottom: 1px solid #AA0000;
+	border-top:5px solid #AA0000;
 	display: flex;
 	align-items:center;
 	
@@ -368,35 +374,40 @@ html {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: -1px;
-	
+
 }
 
 .upgrade-header:hover {
 	
-	background-color: #333300;
+	background-color: #330000;
 	
 }
 .upgrade-header:active  {
 	
-	background-color: #AA7700;
+	background-color: #AA0000;
 	color: #111100;
 }
+
 .upgrade-body{
 	
 	
-	background-color: #111100;
+	background-color: #110000;
 	padding:5px;
 	padding-right:10px;
+	height:auto;
+	display:flex;
+	align-items:stretch;
+	align-content:stretch;
 }
 
 .upgrade-display {
 	
-	border-left: 1px solid #AA7700;
+	border-left: 1px solid #AA0000;
 	display: flex;
 	align-items:center;
 	align-self: flex-end;
 	float: right;
-	flex: 1
+	flex: 1;
 	
 }
 
@@ -464,7 +475,6 @@ html {
 	
     color: #B7692F;
 	text-align: center;
-	font-size: 14px;
 	font-family: "Roboto Condensed";
 		
 }
@@ -491,13 +501,13 @@ html {
   from {
     width: 0px;
 	opacity:0;
-	background-color: #111100;
+	background-color: #110000;
   }
 
   to {
     width: 20px;
 	opacity:1;
-	background-color: #AA7700;
+	background-color: #AA0000;
   }
 }
 
@@ -517,7 +527,7 @@ html {
   }
 
   to {
-    background-color: #112200;
+    background-color: #110000;
   }
 }
 
@@ -540,18 +550,18 @@ html {
   display:none;
   visibility: hidden;
   width: 300px;
-  background-color: #333300;
+  background-color: #330000;
   color: #fff;
   text-align: center;
   padding: 2px 20px;
-  border:1px solid #AA7700;
+  border:1px solid #AA0000;
   
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   bottom: 100%;
   left: 63px;
-  margin-left: -60px;
+  margin-left: -64px;
   
   opacity: 0;
 }
@@ -564,7 +574,7 @@ html {
   margin-left: -0px;
   border-width: 5px;
   border-style: solid;
-  border-color: #AA7700 transparent transparent transparent;
+  border-color: #AA0000 transparent transparent transparent;
   
 }
 
