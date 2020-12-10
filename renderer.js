@@ -97,6 +97,7 @@ function renderDeviation(deviation){
 	upgradeBody.appendChild(upgradex1);
 	upgradeBody.appendChild(upgradex10);
 	
+	console.log(upgradex10)
 	
 	deviationPanel.appendChild(upgrade);
 
